@@ -1,6 +1,7 @@
 import { https } from "@/core/api/https";
 import type { FormIncidencias, IncidenciaData, IncidenciaResponse } from "./data";
 
+// lo que costo eso
 export const postIncidencia = async (
     incidencia: FormIncidencias
 ): Promise<IncidenciaResponse> => {
@@ -19,6 +20,23 @@ export const postIncidencia = async (
     incidencia.archivos.forEach((file) => {
         form.append("archivos", file);
     });
+
+    if (incidencia.inspeccion) {
+        form.append(
+            "inspeccion",
+            JSON.stringify({
+                fecha_inspeccion: incidencia.inspeccion.fecha_inspeccion,
+                responsable_text: incidencia.inspeccion.responsable_text,
+            })
+        );
+        incidencia.inspeccion.inspeccion_archivos.forEach(item => {
+            if (item.file) {
+                form.append("inspeccion_archivos", item.file);
+            }
+        });
+    }
+
+
 
     try {
         const { data } = await https.post<IncidenciaResponse>(

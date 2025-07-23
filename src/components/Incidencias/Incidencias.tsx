@@ -15,6 +15,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Upload, X, FileText } from "lucide-react";
 import type { FormIncidencias } from "./data";
 import { postIncidencia } from "./actions";
+import ComponenteInspeccion from "../Inspeccion/Inspeccion";
 
 export default function FormularioIncidencias() {
   const [formData, setFormData] = useState<FormIncidencias>({
@@ -28,6 +29,12 @@ export default function FormularioIncidencias() {
     reportado_por_tipo: 0,
     descripcion: "",
     archivos: [],
+    inspeccion_archivos: [],
+    inspeccion: {
+      fecha_inspeccion: "",
+      responsable_text: "",
+      inspeccion_archivos: [],
+    },
   });
 
   const handleInputChange = (
@@ -52,6 +59,13 @@ export default function FormularioIncidencias() {
     setFormData((prev) => ({
       ...prev,
       archivos: prev.archivos.filter((_, i) => i !== index),
+    }));
+  };
+
+  const handleInspeccionChange = (inspeccion: any) => {
+    setFormData((prev) => ({
+      ...prev,
+      inspeccion,
     }));
   };
 
@@ -266,7 +280,12 @@ export default function FormularioIncidencias() {
               </div>
             )}
           </div>
-
+          {/* Componente de Inspección */}
+          <ComponenteInspeccion
+            inspeccion={formData.inspeccion}
+            onInspeccionChange={handleInspeccionChange}
+            modoEdicion={false}
+          />
           <Button type="submit" className="w-full">
             Enviar Formulario
           </Button>

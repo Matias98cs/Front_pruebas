@@ -1,5 +1,6 @@
 import IncidenciaFormularioEdicion from "./components/Incidencias/Incidencia"
 import FormularioIncidencias from "./components/Incidencias/Incidencias"
+import FormularioPresupuesto from "./components/Presupuesto/Presupuesto"
 
 function App() {
   return (
@@ -7,10 +8,13 @@ function App() {
       <h1 className="my-10">Frontend de Pruebas</h1>
 
       {/* POST de incidencia */}
-      <FormularioIncidencias/>
+      {/* <FormularioIncidencias/> */}
 
       {/* PATCH de incidencia */}
       {/* <IncidenciaFormularioEdicion/> */}
+
+      {/* POST presupuesto */}
+      <FormularioPresupuesto/>
     </div>
   )
 }

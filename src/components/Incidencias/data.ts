@@ -9,24 +9,32 @@ export interface FormIncidencias {
   reportado_por_tipo: number
   descripcion: string
   archivos: File[]
+  inspeccion?: Inspeccion
+  inspeccion_archivos?: File[],
+}
+
+export interface Inspeccion {
+  fecha_inspeccion: string
+  responsable_text: string,
+  inspeccion_archivos: Array<{ file: File }>;
 }
 
 
 export interface IncidenciaResponse {
-    id:                 number;
-    nro:                string;
-    fecha_inicio:       Date;
-    fecha_vencimiento:  Date;
-    tipo:               number;
-    apertura:           number;
-    medio:              string;
-    consorcio:          number;
-    unidad:             number;
-    reportado_por_tipo: number;
-    reportado_por:      null;
-    estado:             number;
-    descripcion:        string;
-    observaciones:      string;
+  id: number;
+  nro: string;
+  fecha_inicio: Date;
+  fecha_vencimiento: Date;
+  tipo: number;
+  apertura: number;
+  medio: string;
+  consorcio: number;
+  unidad: number;
+  reportado_por_tipo: number;
+  reportado_por: null;
+  estado: number;
+  descripcion: string;
+  observaciones: string;
 }
 
 
@@ -66,8 +74,8 @@ export interface IncidenciaData {
   medio: string
   consorcio: Consorcio
   unidad: Unidad
-//   proveedores: any[]
+  //   proveedores: any[]
   archivos: Archivo[]
-//   inspeccion: any[]
-//   presupuestos: any[]
+  //   inspeccion: any[]
+  //   presupuestos: any[]
 }
